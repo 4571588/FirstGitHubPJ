@@ -3,12 +3,24 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
+//指定编码环境(开发)
 sourceCompatibility = 1.5
 
+//添加资源库
 repositories {
+    mavenLocal()//添加Maven本地资源库
     mavenCentral()
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+/*设置编码为UTF-8
+如果不设置 则注释有中文等情况时 生成javaDoc会出现乱码 并且执行build命令时会出现警告和错误*/
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile group: 'org.freemarker', name: 'freemarker', version: '2.3.23'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.38'
+    //简写语法: 作用范围 'groupname:artifactname:versioninfo'
 }
